@@ -12,5 +12,10 @@ public class UserController : ControllerBase
     {
         _logger = logger;
     }
-
+        
+    [HttpGet(Name = "GetUsers")]
+    public async Task<IActionResult> Get()
+    {
+        return null;
+    }
 }
