@@ -27,4 +27,8 @@
     <Folder Include="Fixtures\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CloudCustomers.API\CloudCustomers.API.csproj" />
+  </ItemGroup>
+
 </Project>
