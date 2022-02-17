@@ -6,10 +6,10 @@ namespace CloudCustomers.API.Controllers;
 [Route("[controller]")]
 public class UsersController : ControllerBase
 {
-
-    public UsersController()
+    private readonly IUsersService _usersService;
+    public UsersController(IUsersService usersService)
     {
-        
+        _usersService = usersService;
     }
         
     [HttpGet(Name = "GetUsers")]
