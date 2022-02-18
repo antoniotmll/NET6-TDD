@@ -1,7 +1,9 @@
 using CloudCustomers.API.Controllers;
+using CloudCustomers.API.Models;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -26,7 +28,7 @@ public class TestUsersController
         var mockUsersService = new Mock<IUsersService>();
         mockUsersService
             .Setup(service => service.GetAllUsers())
-            .ReturnsAsync(new List<Users>);
+            .ReturnsAsync(new List<User>());
 
         var sut = new UsersController(mockUsersService.Object);
 
