@@ -23,7 +23,7 @@ public class TestUsersController
     }
 
     [Fact]
-    public async Task Get_OnSuccess_InvokesUserService()
+    public async Task Get_OnSuccess_InvokesUserServiceExactlyOnce()
     {
 
         var mockUsersService = new Mock<IUsersService>();
@@ -33,6 +33,10 @@ public class TestUsersController
 
         var sut = new UsersController(mockUsersService.Object);
 
-        var result = (OkObjectResult)await sut.Get();
+        var result = await sut.Get();
+
+        mockUsersService.Verify(
+            service => service.GetAllUsers(),
+            Times.Once());
     }
 }
