@@ -39,4 +39,10 @@ public class TestUsersController
             service => service.GetAllUsers(),
             Times.Once());
     }
+
+    [Fact]
+    public async Task Get_OnSuccess_ReturnsListOfUsers()
+    {
+        //TODO
+    }
 }
