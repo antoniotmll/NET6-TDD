@@ -14,7 +14,8 @@ public class TestUsersController
     [Fact]
     public async Task Get_OnSuccess_ReturnsStatusCode200()
     {
-        var sut = new UsersController();
+        var mockUserService = new Mock<IUsersService>();
+        var sut = new UsersController(mockUserService.Object);
 
         var result = (OkObjectResult) await sut.Get();
 
