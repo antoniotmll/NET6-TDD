@@ -43,6 +43,18 @@ public class TestUsersController
     [Fact]
     public async Task Get_OnSuccess_ReturnsListOfUsers()
     {
-        //TODO
+        var mockUserService = new Mock<IUsersService>();
+
+        mockUserService.
+            Setup(service => service.GetAllUsers())
+            .ReturnsAsync(new List<User>());
+
+        var sut = new UsersController(mockUserService.Object);
+
+        var result = await sut.Get();
+
+        result.Should().BeOfType<OkObjectResult>();
+        var objectResult = (OkObjectResult) result;
+        objectResult.Value.Should().BeOfType<List<User>>();
     }
 }
