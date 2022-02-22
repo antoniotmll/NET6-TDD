@@ -59,7 +59,7 @@ public class TestUsersController
                         City = "Madison",
                         ZipCode = "53704"
                     },
-                    Email = "jane@example.com"
+                    Email = "jane@example.com "
                 }
             });
 
@@ -86,5 +86,7 @@ public class TestUsersController
         var result = await sut.Get();
 
         result.Should().BeOfType<NotFoundResult>();
+        var objectResult = (NotFoundResult)result;
+        objectResult.StatusCode.Should().Be(404);
     } 
 }
