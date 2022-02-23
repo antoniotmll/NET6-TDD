@@ -15,10 +15,14 @@ public class TestUsersController
     [Fact]
     public async Task Get_OnSuccess_ReturnsStatusCode200()
     {
-        var mockUserService = new Mock<IUsersService>();
-        var sut = new UsersController(mockUserService.Object);
+        var mockUsersService = new Mock<IUsersService>();
+        mockUsersService
+            .Setup(service => service.GetAllUsers())
+            .ReturnsAsync(UsersFixture.GetTestUsers());
 
-        var result = (OkObjectResult) await sut.Get();
+        var sut = new UsersController(mockUsersService.Object);
+
+        var result = (OkObjectResult)await sut.Get();
 
         result.StatusCode.Should().Be(200);
     }
