@@ -3,7 +3,7 @@ using System;
 
 public class UsersService : IUsersService
 {
-    Task<List<User>> IUsersService.GetAllUsers()
+    public Task<List<User>> GetAllUsers()
     {
         throw new NotImplementedException();
     }
