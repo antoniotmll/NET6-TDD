@@ -29,8 +29,8 @@ namespace CloudCustomers.UnitTests.Systems.Services
                 .Verify(
                 "SendAsync", 
                 Times.Exactly(1),
-                ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Get)),
-                ItExpr.IsAny<CancellationToken>();
+                ItExpr.Is<HttpRequestMessage>(req => req.Method == HttpMethod.Get),
+                ItExpr.IsAny<CancellationToken>());
         }
 
         [Fact]
