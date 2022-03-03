@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Moq.Protected;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
@@ -32,6 +33,11 @@ namespace CloudCustomers.UnitTests.Helpers
 
             return handlerMock; 
                         
+        }
+
+        internal static object SetupReturn404()
+        {
+            throw new NotImplementedException();
         }
     }
 }
