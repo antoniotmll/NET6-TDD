@@ -42,7 +42,7 @@ namespace CloudCustomers.UnitTests.Systems.Services
 
             var result = await sut.GetAllUsers();
 
-            result.Should().BeOfType<List<User>>();
+            result.Count.Should().Be(0);
         }
     }
 }
