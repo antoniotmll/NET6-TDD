@@ -6,6 +6,7 @@ using CloudCustomers.API.Models;
 using CloudCustomers.UnitTests.Fixtures;
 using CloudCustomers.UnitTests.Helpers;
 using FluentAssertions;
+using Microsoft.Extensions.Options;
 using Moq;
 using Moq.Protected;
 using Xunit;
@@ -57,6 +58,26 @@ namespace CloudCustomers.UnitTests.Systems.Services
             var result = await sut.GetAllUsers();
 
             result.Count.Should().Be(expectedResponse.Count);
+        }
+
+        [Fact]
+        public async Task GetAllUsers_WhenCalled_InvokesConfiguredExternalUrl()
+        {
+            var expectedResponse = UsersFixture.GetTestUsers();
+            var endpoint = "https://example.com/users";
+            var handlerMock = MockHttpMessageHandler<User>
+                .SetupBasicGetResourceList(expectedResponse, endpoint);
+            var httpClient = new HttpClient(handlerMock.Object);
+
+            var config = Options.Create(new UserApiOptions
+            {
+                Endpoint = "https://example.com/users"
+            });
+
+            var sut = new UsersService(httpClient);
+
+            var result = await sut.GetAllUsers();
+
         }
     }
 }
