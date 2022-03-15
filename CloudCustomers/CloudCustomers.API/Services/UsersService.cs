@@ -1,12 +1,13 @@
 ﻿using CloudCustomers.API.Models;
 using Microsoft.Extensions.Options;
 using System;
+using UsersAPI.Config;
 
 public class UsersService : IUsersService
 {
     private readonly HttpClient _httpClient;
 
-    public UsersService(HttpClient httpClient, IOptions<> apiConfig)
+    public UsersService(HttpClient httpClient, IOptions<UserApiOptions> apiConfig)
     {
         _httpClient = httpClient;
 
