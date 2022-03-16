@@ -6,11 +6,13 @@ using UsersAPI.Config;
 public class UsersService : IUsersService
 {
     private readonly HttpClient _httpClient;
+    private readonly UserApiOptions _apiConfig;
 
-    public UsersService(HttpClient httpClient, IOptions<UserApiOptions> apiConfig)
+    public UsersService(HttpClient httpClient, 
+                        IOptions<UserApiOptions> apiConfig)
     {
         _httpClient = httpClient;
-
+        _apiConfig = apiConfig.Value;
     }
 
     public async Task<List<User>> GetAllUsers()
